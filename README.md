@@ -16,7 +16,23 @@ bundle exec jekyll serve
 
 ## 포스트 작성하기
 
+### 방법 1: 스크립트 사용 (추천)
+
+**Python 스크립트:**
+```bash
+python scripts/new_post.py "포스트 제목" "태그1,태그2,태그3"
+```
+
+**Shell 스크립트:**
+```bash
+./scripts/new_post.sh "포스트 제목" "태그1,태그2,태그3"
+```
+
+### 방법 2: 직접 작성
+
 `_posts/` 디렉토리에 `YYYY-MM-DD-post-title.md` 형식으로 파일을 생성하세요.
+
+템플릿은 `_posts/TEMPLATE.md`를 참고하세요.
 
 ```markdown
 ---
