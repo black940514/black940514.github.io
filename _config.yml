@@ -8,12 +8,11 @@ baseurl: ""
 # Build Settings
 markdown: kramdown
 highlighter: rouge
+
+# GitHub Pages 호환 플러그인만 사용
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-
-# Theme Settings
-theme: minima
 
 # Navigation
 navigation:
