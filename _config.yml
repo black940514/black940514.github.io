@@ -22,6 +22,8 @@ navigation:
     url: /about
   - title: Posts
     url: /posts
+  - title: 작성하기
+    url: /editor
 
 # Social Links
 social:

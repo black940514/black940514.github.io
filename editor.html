@@ -1,0 +1,148 @@
+---
+layout: default
+title: 포스트 작성
+---
+
+<div class="editor-container">
+  <div class="editor-header">
+    <h1>포스트 작성</h1>
+    <div class="editor-actions">
+      <button id="loadPostsBtn" class="btn btn-outline">포스트 불러오기</button>
+      <button id="saveBtn" class="btn btn-primary">저장</button>
+      <button id="previewBtn" class="btn btn-secondary">미리보기</button>
+      <button id="downloadBtn" class="btn btn-outline">다운로드</button>
+      <a href="/" class="btn btn-outline">목록으로</a>
+    </div>
+  </div>
+
+  <div class="editor-form">
+    <div class="form-group">
+      <label for="postTitle">제목</label>
+      <input type="text" id="postTitle" class="form-input" placeholder="포스트 제목을 입력하세요">
+    </div>
+
+    <div class="form-group">
+      <label for="postTags">태그 (쉼표로 구분)</label>
+      <input type="text" id="postTags" class="form-input" placeholder="예: Python, AI, 개발">
+    </div>
+
+    <div class="editor-wrapper">
+      <div class="editor-panel">
+        <div class="panel-header">
+          <span>마크다운 편집</span>
+          <div class="panel-actions">
+            <button id="helpBtn" class="btn-icon" title="마크다운 문법 도움말">?</button>
+            <button id="fullscreenBtn" class="btn-icon" title="전체화면">⛶</button>
+          </div>
+        </div>
+        <textarea id="markdownEditor" class="markdown-editor" placeholder="포스트 내용을 마크다운으로 작성하세요..."></textarea>
+      </div>
+
+      <div class="preview-panel" id="previewPanel">
+        <div class="panel-header">
+          <span>미리보기</span>
+          <button id="closePreviewBtn" class="btn-icon">✕</button>
+        </div>
+        <div id="previewContent" class="preview-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GitHub 저장 모달 -->
+  <div id="githubModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>GitHub에 저장</h2>
+        <button class="modal-close" id="closeModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>GitHub에 직접 저장하려면 Personal Access Token이 필요합니다.</p>
+        <div class="form-group">
+          <label for="githubToken">GitHub Token</label>
+          <input type="password" id="githubToken" class="form-input" placeholder="ghp_...">
+          <small>토큰은 브라우저에 저장되지 않습니다. <a href="https://github.com/settings/tokens" target="_blank">토큰 생성하기</a></small>
+        </div>
+        <div class="form-group">
+          <label for="commitMessage">커밋 메시지</label>
+          <input type="text" id="commitMessage" class="form-input" value="새 포스트 추가" placeholder="커밋 메시지">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="saveToGitHubBtn" class="btn btn-primary">저장</button>
+        <button id="cancelSaveBtn" class="btn btn-outline">취소</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 마크다운 도움말 모달 -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h2>마크다운 문법 도움말</h2>
+        <button class="modal-close" id="closeHelpModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="help-content">
+          <h3>제목</h3>
+          <pre><code># 제목 1
+## 제목 2
+### 제목 3</code></pre>
+
+          <h3>강조</h3>
+          <pre><code>**굵은 글씨**
+*기울임*
+`코드`</code></pre>
+
+          <h3>리스트</h3>
+          <pre><code>- 항목 1
+- 항목 2
+  - 하위 항목
+
+1. 번호 리스트
+2. 번호 리스트</code></pre>
+
+          <h3>링크와 이미지</h3>
+          <pre><code>[링크 텍스트](https://example.com)
+![이미지 설명](이미지_URL)</code></pre>
+
+          <h3>코드 블록</h3>
+          <pre><code>```python
+def hello():
+    print("Hello!")
+```</code></pre>
+
+          <h3>인용문</h3>
+          <pre><code>> 인용할 내용</code></pre>
+
+          <h3>단축키</h3>
+          <ul>
+            <li><kbd>Ctrl/Cmd + S</kbd>: 저장</li>
+            <li><kbd>Ctrl/Cmd + P</kbd>: 미리보기 토글</li>
+            <li><kbd>Ctrl/Cmd + D</kbd>: 다운로드</li>
+            <li><kbd>Esc</kbd>: 모달 닫기</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 포스트 목록 모달 -->
+  <div id="postsModal" class="modal">
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h2>포스트 목록</h2>
+        <button class="modal-close" id="closePostsModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="postsList" class="posts-list">
+          <p class="loading">로딩 중...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+<script src="{{ '/assets/js/editor.js' | relative_url }}"></script>
+
