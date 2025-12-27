@@ -199,20 +199,50 @@ date: ${date}`;
 
   showSaveModal() {
     document.getElementById('githubModal').classList.add('active');
+    this.loadTokenFromLocalStorage();
   }
 
   hideSaveModal() {
     document.getElementById('githubModal').classList.remove('active');
-    document.getElementById('githubToken').value = '';
+    // 토큰 저장 체크박스가 체크되어 있지 않으면 입력값만 지움
+    if (!document.getElementById('saveToken').checked) {
+      document.getElementById('githubToken').value = '';
+    }
+  }
+
+  saveTokenToLocalStorage(token) {
+    localStorage.setItem('github_token', token);
+  }
+
+  loadTokenFromLocalStorage() {
+    const token = localStorage.getItem('github_token');
+    if (token) {
+      document.getElementById('githubToken').value = token;
+      document.getElementById('saveToken').checked = true;
+    } else {
+      document.getElementById('saveToken').checked = false;
+    }
+  }
+
+  removeTokenFromLocalStorage() {
+    localStorage.removeItem('github_token');
   }
 
   async saveToGitHub() {
     const token = document.getElementById('githubToken').value.trim();
     const commitMessage = document.getElementById('commitMessage').value || '새 포스트 추가';
+    const saveToken = document.getElementById('saveToken').checked;
     
     if (!token) {
       alert('GitHub Token을 입력해주세요.');
       return;
+    }
+
+    // 토큰 저장 처리
+    if (saveToken) {
+      this.saveTokenToLocalStorage(token);
+    } else {
+      this.removeTokenFromLocalStorage();
     }
 
     const content = this.getPostContent();

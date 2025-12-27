@@ -60,7 +60,10 @@ title: 포스트 작성
         <div class="form-group">
           <label for="githubToken">GitHub Token</label>
           <input type="password" id="githubToken" class="form-input" placeholder="ghp_...">
-          <small>토큰은 브라우저에 저장되지 않습니다. <a href="https://github.com/settings/tokens" target="_blank">토큰 생성하기</a></small>
+          <label class="checkbox-label">
+            <input type="checkbox" id="saveToken"> 토큰 저장 (로컬 스토리지)
+          </label>
+          <small><a href="https://github.com/settings/tokens" target="_blank">토큰 생성하기</a></small>
         </div>
         <div class="form-group">
           <label for="commitMessage">커밋 메시지</label>
