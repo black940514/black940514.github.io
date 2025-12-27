@@ -19,6 +19,9 @@
   font-size: 2rem;
   font-weight: 700;
   color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .editor-actions {
@@ -534,6 +537,17 @@
 .notification.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.sync-notification {
+  max-width: 400px;
+  text-align: left;
+  padding: 1.25rem;
+}
+
+.sync-notification code {
+  font-family: 'Monaco', 'Courier New', monospace;
+  word-break: break-all;
 }
 
 /* 반응형 */

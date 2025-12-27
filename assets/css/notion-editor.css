@@ -227,6 +227,41 @@
   background: rgba(99, 102, 241, 0.2);
 }
 
+/* 드래그 오버 스타일 */
+.notion-editor.drag-over {
+  background: rgba(99, 102, 241, 0.05);
+  border: 2px dashed var(--primary-color);
+}
+
+/* 이미지 스타일 */
+.notion-editor img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.notion-editor img:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 수정 모드 배지 */
+.edit-badge {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.75rem;
+  vertical-align: middle;
+}
+
 /* 반응형 */
 @media (max-width: 768px) {
   .toolbar {

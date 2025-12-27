@@ -70,6 +70,25 @@ tags: [태그1, 태그2]
 포스트 내용...
 ```
 
+## 로컬 저장소 동기화
+
+웹 에디터에서 포스트를 작성하고 GitHub에 저장한 후, 로컬 저장소를 동기화하려면:
+
+**Shell 스크립트:**
+```bash
+./scripts/sync_local.sh
+```
+
+**Python 스크립트:**
+```bash
+python scripts/sync_local.py
+```
+
+이 스크립트는:
+- 로컬 변경사항을 임시 저장 (stash)
+- GitHub에서 최신 변경사항 가져오기 (pull)
+- 임시 저장한 변경사항 복원
+
 ## 배포
 
 GitHub에 푸시하면 자동으로 GitHub Pages에 배포됩니다.

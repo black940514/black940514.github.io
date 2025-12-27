@@ -485,9 +485,12 @@ date: ${date}`;
         this.clearLocalStorage();
         this.currentPostFile = null; // 수정 모드 해제
         
+        // 로컬 동기화 안내
+        this.showSyncNotification();
+        
         setTimeout(() => {
           window.location.href = '/';
-        }, 2000);
+        }, 3000);
       } else {
         const error = await response.json();
         throw new Error(error.message || '저장에 실패했습니다.');
@@ -496,6 +499,35 @@ date: ${date}`;
       alert(`오류: ${error.message}`);
       console.error(error);
     }
+  }
+
+  showSyncNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'notification sync-notification';
+    notification.innerHTML = `
+      <div style="margin-bottom: 0.5rem; font-weight: 600;">로컬 저장소 동기화</div>
+      <div style="font-size: 0.875rem; opacity: 0.9;">
+        로컬에서 다음 명령어를 실행하세요:
+      </div>
+      <code style="display: block; margin-top: 0.5rem; padding: 0.5rem; background: rgba(0,0,0,0.2); border-radius: 0.25rem; font-size: 0.8125rem;">
+        ./scripts/sync_local.sh
+      </code>
+      <div style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8;">
+        또는: python scripts/sync_local.py
+      </div>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 300);
+    }, 8000); // 8초간 표시
   }
 
   showNotification(message) {
