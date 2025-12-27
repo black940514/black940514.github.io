@@ -1,0 +1,43 @@
+# Site Settings
+title: "AI Developer Blog"
+description: "AI 개발자 블로그 - 인공지능, 머신러닝, 개발 이야기"
+author: "black940514"
+url: "https://black940514.github.io"
+baseurl: ""
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Theme Settings
+theme: minima
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: About
+    url: /about
+  - title: Posts
+    url: /posts
+
+# Social Links
+social:
+  github: black940514
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
+
+# Exclude
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
+
